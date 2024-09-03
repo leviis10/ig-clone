@@ -2,14 +2,14 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { TouchableOpacity } from "react-native";
 import { Image, View } from "tamagui";
 import useBottomSheetContext from "../../hooks/useBottomSheetContext";
-import CommentList from "./Comment/CommentList";
+import Comment from "./Comment/Comment";
 
 function FeedBody(props) {
-  const { imageUrl, comments } = props;
+  const { imageUrl, comments, user } = props;
   const { openBottomSheetModal } = useBottomSheetContext();
 
   function openBottomSheetHandler() {
-    openBottomSheetModal(<CommentList comments={comments} />);
+    openBottomSheetModal(<Comment comments={comments} user={user} />);
   }
 
   return (

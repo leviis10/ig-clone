@@ -25,6 +25,9 @@ function BottomSheetProvider(props) {
           ref={bottomSheetModalRef}
           index={0}
           snapPoints={["50%", "90%"]}
+          containerStyle={{
+            backgroundColor: "#00000050",
+          }}
         >
           {content}
         </BottomSheetModal>

@@ -3,10 +3,10 @@ import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Image, Text, View } from "tamagui";
 import useBottomSheetContext from "../../hooks/useBottomSheetContext";
-import CommentList from "./Comment/CommentList";
+import Comment from "./Comment/Comment";
 
 function FeedFooter(props) {
-  const { likes, caption, comments, date, username } = props;
+  const { likes, caption, comments, date, username, user } = props;
   const [seeMore, setSeeMore] = useState(false);
   const { openBottomSheetModal } = useBottomSheetContext();
 
@@ -15,7 +15,7 @@ function FeedFooter(props) {
   }
 
   function openBottomSheetModalHandler() {
-    openBottomSheetModal(<CommentList comments={comments} />);
+    openBottomSheetModal(<Comment comments={comments} user={user} />);
   }
 
   return (

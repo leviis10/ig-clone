@@ -17,7 +17,7 @@ function CommentItem(props) {
         height={40}
         borderRadius={40}
       />
-      <View gap={5}>
+      <View gap={1}>
         <Text>
           {username}{" "}
           <Text fontSize={12} color="gray">

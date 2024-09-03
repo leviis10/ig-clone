@@ -9,13 +9,14 @@ function Feed(props) {
   return (
     <View gap={15}>
       <FeedHeader username={user.username} imageUrl={user.imageUrl} />
-      <FeedBody imageUrl={imageUrl} comments={comments} />
+      <FeedBody imageUrl={imageUrl} comments={comments} user={user} />
       <FeedFooter
         likes={likes}
         caption={caption}
         comments={comments}
         date={date}
         username={user.username}
+        user={user}
       />
     </View>
   );

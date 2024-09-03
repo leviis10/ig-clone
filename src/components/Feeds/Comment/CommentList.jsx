@@ -15,6 +15,7 @@ function CommentList(props) {
       keyExtractor={(comment) => comment.id}
       renderItem={CommentItem}
       ItemSeparatorComponent={Separator}
+      contentContainerStyle={{ paddingRight: 20 }}
     />
   );
 }
