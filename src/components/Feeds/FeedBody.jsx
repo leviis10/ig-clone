@@ -1,9 +1,16 @@
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { TouchableOpacity } from "react-native";
 import { Image, View } from "tamagui";
+import useBottomSheetContext from "../../hooks/useBottomSheetContext";
+import CommentList from "./Comment/CommentList";
 
 function FeedBody(props) {
-  const { imageUrl } = props;
+  const { imageUrl, comments } = props;
+  const { openBottomSheetModal } = useBottomSheetContext();
+
+  function openBottomSheetHandler() {
+    openBottomSheetModal(<CommentList comments={comments} />);
+  }
 
   return (
     <>
@@ -17,7 +24,7 @@ function FeedBody(props) {
           <TouchableOpacity>
             <FontAwesome6 name="heart" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={openBottomSheetHandler}>
             <FontAwesome6 name="comment" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity>

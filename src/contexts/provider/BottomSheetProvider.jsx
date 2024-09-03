@@ -2,8 +2,8 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
-import bottomSheetContext from "../bottomSheetContext";
 import { useRef, useState } from "react";
+import bottomSheetContext from "../bottomSheetContext";
 
 function BottomSheetProvider(props) {
   const { children } = props;
@@ -15,11 +15,7 @@ function BottomSheetProvider(props) {
     bottomSheetModalRef.current.present();
   }
 
-  function closeBottomSheetModal() {
-    bottomSheetModalRef.current.dismiss();
-  }
-
-  const initialValue = { openBottomSheetModal, closeBottomSheetModal };
+  const initialValue = { openBottomSheetModal };
 
   return (
     <bottomSheetContext.Provider value={initialValue}>
@@ -27,9 +23,8 @@ function BottomSheetProvider(props) {
         {children}
         <BottomSheetModal
           ref={bottomSheetModalRef}
-          index={-1}
-          snapPoints={["50%"]}
-          enablePanDownToClose
+          index={0}
+          snapPoints={["50%", "90%"]}
         >
           {content}
         </BottomSheetModal>

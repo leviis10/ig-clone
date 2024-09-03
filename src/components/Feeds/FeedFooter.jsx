@@ -1,25 +1,21 @@
-import { useRef, useState } from "react";
-import { TouchableOpacity } from "react-native";
-import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
-import { Image, Text, View } from "tamagui";
-import CommentItem from "./Comment/CommentItem";
 import moment from "moment";
-
-function Separator() {
-  return <View height={10} />;
-}
+import { useState } from "react";
+import { TouchableOpacity } from "react-native";
+import { Image, Text, View } from "tamagui";
+import useBottomSheetContext from "../../hooks/useBottomSheetContext";
+import CommentList from "./Comment/CommentList";
 
 function FeedFooter(props) {
   const { likes, caption, comments, date, username } = props;
   const [seeMore, setSeeMore] = useState(false);
-  const sheetRef = useRef(null);
+  const { openBottomSheetModal } = useBottomSheetContext();
 
   function seeMoreCommentHandler() {
     setSeeMore(true);
   }
 
-  function openCommentBottomSheetHandler() {
-    sheetRef.current.snapToIndex(0);
+  function openBottomSheetModalHandler() {
+    openBottomSheetModal(<CommentList comments={comments} />);
   }
 
   return (
@@ -58,7 +54,7 @@ function FeedFooter(props) {
             </TouchableOpacity>
           )}
         </View>
-        <TouchableOpacity onPress={openCommentBottomSheetHandler}>
+        <TouchableOpacity onPress={openBottomSheetModalHandler}>
           <Text fontSize={12} color="gray">
             View all {comments.length} comments
           </Text>
@@ -67,21 +63,6 @@ function FeedFooter(props) {
           {moment(date).format("MMMM DD, YYYY")}
         </Text>
       </View>
-
-      {/* Bottom sheet */}
-      <BottomSheet
-        snapPoints={["50%", "100%"]}
-        index={-1}
-        ref={sheetRef}
-        enablePanDownToClose
-      >
-        <BottomSheetFlatList
-          data={comments}
-          keyExtractor={(comment) => comment.username}
-          renderItem={CommentItem}
-          ItemSeparatorComponent={Separator}
-        />
-      </BottomSheet>
     </>
   );
 }
